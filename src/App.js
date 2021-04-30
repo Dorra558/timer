@@ -17,7 +17,6 @@ class App extends React.Component {
 
 
 
-
   converTime = ()  =>{
  let valeur = this.state.value    
  
@@ -28,15 +27,35 @@ class App extends React.Component {
        })
   }
 
+  run = () =>{
+    if(this.state.seconde === 60){
+      this.state.min ++
+      this.state.seconde = 0
+    }
 
-  
-  startTime =() =>{
-   this. interv = setInterval(() => {
-      this.setState({
-        seconde : Number(this.state.seconde) + 1
-      })
-    }, 1000);
-  }
+
+   }
+   
+
+
+   startTime = () => {
+    this.interval = setInterval(() => {
+        let s = this.state.seconde;
+        if (s === 60){
+            this.state.min++ 
+            this.state.seconde = 0 
+
+        }
+        if (this.state.min === 60){
+            this.state.heure++
+            this.state.min = 0 
+        }
+
+         this.setState({
+             seconde : Number(this.state.seconde)+1,
+         })
+     },1000);
+ }
 
 stopTime = ()=>{
   clearInterval(this.interv)
@@ -49,7 +68,6 @@ resetTime = () =>{
     seconde : 0 ,
 })
 }
-
 
   render() {
     return (
