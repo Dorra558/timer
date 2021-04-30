@@ -3,6 +3,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 
 
+
 class App extends React.Component {
 
 
@@ -58,7 +59,7 @@ class App extends React.Component {
  }
 
 stopTime = ()=>{
-  clearInterval(this.interv)
+  clearInterval(this.interval)
 }
 
 resetTime = () =>{
@@ -71,19 +72,22 @@ resetTime = () =>{
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div className="chrono">
+        <center>
+      <form className="formulaire" onSubmit={this.handleSubmit}>
         <label>
-          Enter a value:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <p>Heures: {this.state.heure}</p>
-          <p>Minutes: {this.state.min}</p>
-          <p>secondes: {this.state.seconde}</p>
+          <input className="inpute" type="text" value={this.state.value}  placeholder="Enter value" onChange={this.handleChange} />
+          <pre>H: <span>{this.state.heure}</span> M: <span>{this.state.min}</span> s: <span>{this.state.seconde}</span></pre>
         </label>
-        <Button onClick={this.converTime}>Convert </Button>
-        <Button onClick={this.startTime}>Start </Button>
-        <Button onClick={this.stopTime}>Stop </Button>
-        <Button onClick={this.resetTime}>Reset </Button>
       </form>
+        <div className="bouton">
+                <Button onClick={this.converTime}>Convert </Button>
+                <Button onClick={this.startTime}>Start </Button>
+                <Button onClick={this.stopTime}>Stop </Button>
+                <Button onClick={this.resetTime}>Reset </Button>
+        </div>
+        </center>
+      </div>
     );
   }
 }
